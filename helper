@@ -1,0 +1,13 @@
+$('#get-img').click(function (event){
+    event.preventDefault();
+    let current_breed = $('#breeds').val();
+let xhrReq = new XMLHttpRequest();
+    xhrReq.onload = function ()
+    {
+        let json_response = JSON.parse(xhrReq.response);
+        let fetched_image = json_response.message;
+        $('img').attr('src', fetched_image);
+    };
+    xhrReq.open('get', 'https://dog.ceo/api/breed/' + current_breed + '/images/random');
+    xhrReq.send();
+})
